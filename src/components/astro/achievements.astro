@@ -1,0 +1,41 @@
+---
+import { achievements } from "../../data/achievements";
+---
+
+<div class="px-4 py-4 mt-2 flex flex-col">
+    <div class="flex justify-stretch items-center mb-3 ml-4">
+        <img
+            src="/assets/icons/achievements_icon.png"
+            loading="eager"
+            class="h-12 w-12 object-contain"
+        />
+        <span class="text-white font-bold text-2xl ml-3">Achievements</span>
+    </div>
+    <div class="container">
+        {
+            achievements.map((achievement) => (
+                <div class="card hover:scale-105 hover:shadow-md hover:shadow-white">
+                    <div class="card-text text-xl font-bold text-white">
+                        {achievement}
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</div>
+<style>
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+    }
+</style>

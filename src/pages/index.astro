@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/astro/NavBar.astro";
+import HeadCard from "../components/astro/HeadCard.astro";
+import About from "../components/astro/about.astro";
+import Skills from "../components/astro/skills.astro";
+import Projects from "../components/astro/projects.astro";
+import Education from "../components/astro/education.astro";
+import Achievements from "../components/astro/achievements.astro";
+import Drawer from "../components/astro/drawer.astro";
+import Contact from "../components/astro/contact.astro";
+---
+
+<Layout title="Welcome to myPortfolio.">
+	<main class="flex flex-col items-center">
+		<Drawer />
+		<Navbar />
+		<div class="flex flex-col max-width">
+			<HeadCard />
+			<About />
+			<Skills />
+			<Projects />
+			<Education />
+			<Achievements />
+			<div class="contact"><Contact /></div>
+		</div>
+	</main>
+</Layout>
+<style>
+	.max-width {
+		max-width: 1350px;
+	}
+
+	.contact {
+		display: block;
+	}
+	@media screen and (min-width: 960px) {
+		.contact {
+			display: none;
+		}
+	}
+</style>

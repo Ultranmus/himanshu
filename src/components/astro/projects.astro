@@ -1,0 +1,65 @@
+---
+import { projects } from "../../data/projects";
+---
+
+<div class="px-4 py-4 mt-2 flex flex-col relative">
+    <div class="absolute -top-20" id="project"></div>
+
+    <div class="flex justify-stretch items-center mb-3 ml-4">
+        <img
+            src="/assets/icons/projects_icon.png"
+            loading="eager"
+            class="h-12 w-12 object-contain"
+        />
+        <span class="text-white font-bold text-2xl ml-3">Projects</span>
+    </div>
+    <div class="grid-container">
+        {
+            projects.map((project) => (
+                <a
+                    href={project.link}
+                    class="grid-item hover:scale-105 hover:shadow-md hover:shadow-white"
+                >
+                    <img src={project.image} alt="" />
+                    <div class="text-xl text-white">{project.title}</div>
+                </a>
+            ))
+        }
+    </div>
+</div>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .grid-item {
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .grid-item img {
+        width: auto;
+        height: 100%;
+        margin: 10px;
+        max-width: 80px;
+        max-height: 80px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    .grid-item div {
+        margin-right: 10px;
+        text-align: center;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-grow: 0.4;
+    }
+</style>
