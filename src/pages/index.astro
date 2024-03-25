@@ -22,21 +22,117 @@ import Contact from "../components/astro/contact.astro";
 			<Projects />
 			<Education />
 			<Achievements />
-			<div class="contact"><Contact /></div>
+			<div class="contact-dialog"><Contact id="contact-bottom" /></div>
 		</div>
 	</main>
 </Layout>
-<style>
+<style is:global>
 	.max-width {
 		max-width: 1350px;
 	}
 
-	.contact {
+	.contact-dialog {
 		display: block;
+		margin: 20px 20px 50px 0px;
 	}
+
 	@media screen and (min-width: 960px) {
-		.contact {
+		.contact-dialog {
 			display: none;
+			margin: 0px;
+		}
+	}
+
+	.fade-in {
+		opacity: 0;
+		transform: translateY(100px);
+		transition: all 1s ease-out;
+	}
+
+	.active {
+		opacity: 4;
+		transform: translateY(0);
+	}
+
+	.grid-item:hover {
+		box-sizing: border-box;
+		box-shadow: 0 5px 15px 0px rgb(230, 12, 12);
+		animation: float 2.5s ease-in-out infinite;
+	}
+
+	@keyframes float {
+		0% {
+			box-shadow: 0 5px 10px 0px rgba(255, 255, 255, 0.6);
+			scale: 100%;
+		}
+
+		50% {
+			box-shadow: 0 5px 10px 0px rgba(255, 255, 255, 0.2);
+			scale: 105%;
+		}
+
+		100% {
+			box-shadow: 0 5px 15px 0px rgba(255, 255, 255, 0.6);
+			scale: 100%;
 		}
 	}
 </style>
+<script>
+	function getVisibleDialog() {
+		var screenWidth = window.innerWidth;
+		if (screenWidth > 960) {
+			return document.documentElement || document.body;
+		} else {
+			return document.getElementById("contact-bottom");
+		}
+	}
+
+	// Function to scroll to the visible dialog
+	function scrollToVisibleDialog() {
+		var visibleDialog = getVisibleDialog();
+		if (visibleDialog) {
+			visibleDialog.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			});
+		}
+	}
+
+	// Add click event listener to the button
+	var scrollLinks = document.querySelectorAll(".contact-btn");
+	if (scrollLinks) {
+		scrollLinks.forEach(function (scrollLink) {
+			scrollLink.addEventListener("click", function (event) {
+				event.preventDefault(); // Prevent default anchor behavior
+				scrollToVisibleDialog(); // Scroll to Dialog
+			});
+		});
+	}
+
+	const elements: NodeListOf<Element> = document.querySelectorAll(".fade-in");
+
+	const options: IntersectionObserverInit = {
+		root: null,
+		rootMargin: "0px",
+		threshold: 0.4,
+	};
+
+	const callbacks: IntersectionObserverCallback = (
+		entries: IntersectionObserverEntry[],
+	) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("active");
+			}
+		});
+	};
+
+	let observer: IntersectionObserver = new IntersectionObserver(
+		callbacks,
+		options,
+	);
+
+	elements.forEach((element) => {
+		observer.observe(element);
+	});
+</script>

@@ -1,5 +1,13 @@
-<div class="h-full flex">
-    <div class="container mr-5">
+---
+interface Props {
+    id: string;
+}
+const { id } = Astro.props;
+---
+
+<div class="fade-in h-full flex justify-center relative">
+    <div class="absolute -top-24 contact" id={id}></div>
+    <div class="container ml-5">
         <div
             class="h-full max-w-md mx-auto bg-gray-800 p-4 rounded-2xl shadow-sm"
         >
@@ -108,6 +116,38 @@
         </div>
     </div>
 </div>
+<style>
+    button {
+        animation: wiggle 2s linear infinite;
+    }
+
+    /* Keyframes */
+    @keyframes wiggle {
+        0%,
+        7% {
+            transform: rotateZ(0);
+        }
+        15% {
+            transform: rotateZ(-5deg);
+        }
+        20% {
+            transform: rotateZ(5deg);
+        }
+        25% {
+            transform: rotateZ(-5deg);
+        }
+        30% {
+            transform: rotateZ(6deg);
+        }
+        35% {
+            transform: rotateZ(-4deg);
+        }
+        40%,
+        100% {
+            transform: rotateZ(0);
+        }
+    }
+</style>
 <script>
     const form = document.getElementById("form") as HTMLFormElement;
     const result = document.getElementById("result") as HTMLElement;

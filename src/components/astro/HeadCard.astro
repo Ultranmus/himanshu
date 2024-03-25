@@ -3,7 +3,7 @@ import Contact from "./contact.astro";
 ---
 
 <div class="m-5 mb-9 flex items-stretch">
-    <div class="head w-2/3 mr-5 rounded-2xl card flex flex-col">
+    <div class="head w-2/3 rounded-2xl card flex flex-col">
         <div class="overflow-hidden">
             <div class="min-h-16 relative">
                 <img
@@ -31,9 +31,9 @@ import Contact from "./contact.astro";
                     Himanshu Mathpal
                 </div>
                 <div
-                    class="font-bold mt-2 mb-1 text-lg sm:text-lg md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl"
+                    class="font-bold mt-2 mb-1 text-lg sm:text-lg md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl min-h-8"
                 >
-                    Software Developer
+                    <span id="typewriter"></span>
                 </div>
                 <div
                     class="font-semibold text-base md:text-xl lg:text-xl xl:text-xl 2xl:text-xl flex items-center"
@@ -61,7 +61,7 @@ import Contact from "./contact.astro";
             </div>
         </div>
     </div>
-    <div class="flex-1 w-1/3" id="contact"><Contact /></div>
+    <div class="flex-1 w-1/3" id="contact"><Contact id="contact-top" /></div>
 </div>
 <style>
     .card {
@@ -94,10 +94,53 @@ import Contact from "./contact.astro";
             }
         }
 
-        window.addEventListener(
-            "load",
-            setImageMargin,
-        ); /* Run on window load */
+        window.addEventListener("load", () => {
+            setImageMargin();
+
+            // // INJECT CSS
+            // var css = document.createElement("style");
+            // css.type = "text/css";
+            // css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            // document.body.appendChild(css);
+        }); /* Run on window load */
         window.addEventListener("resize", setImageMargin);
     }
+
+    const words = [
+        "Software Developer",
+        "Flutter Developer",
+        "Astro Developer",
+        "Android Developer",
+    ];
+    let i = 0;
+    let j = 0;
+    let currentWord = "";
+    let isDeleting = false;
+
+    function type() {
+        currentWord = words[i];
+        var writer = document.getElementById("typewriter");
+        if (writer) {
+            if (isDeleting) {
+                writer.textContent = currentWord.substring(0, j - 1);
+                j--;
+                if (j == 0) {
+                    isDeleting = false;
+                    i++;
+                    if (i == words.length) {
+                        i = 0;
+                    }
+                }
+            } else {
+                writer.textContent = currentWord.substring(0, j + 1);
+                j++;
+                if (j == currentWord.length) {
+                    isDeleting = true;
+                }
+            }
+        }
+        setTimeout(type, 100);
+    }
+
+    type();
 </script>

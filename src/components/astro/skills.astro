@@ -2,26 +2,28 @@
 import { skills } from "../../data/skills";
 ---
 
-<div class="px-4 py-4 mt-2 flex flex-col relative">
+<div class="px-4 py-4 mt-2 relative">
     <div class="absolute -top-20" id="skills"></div>
 
-    <div class="flex justify-stretch items-center mb-3 ml-4">
-        <img
-            src="/assets/icons/skills_icon.png"
-            loading="eager"
-            class="h-12 w-12 object-contain"
-        />
-        <span class="text-white font-bold text-2xl ml-3">Skills</span>
-    </div>
-    <div class="grid-container">
-        {
-            skills.map((skill) => (
-                <div class="grid-item hover:scale-105 hover:shadow-md hover:shadow-white">
-                    <img src={skill.image} alt="" />
-                    <div class="text-xl text-white">{skill.name}</div>
-                </div>
-            ))
-        }
+    <div class="flex flex-col">
+        <div class="flex justify-stretch items-center mb-3 ml-4">
+            <img
+                src="/assets/icons/skills_icon.png"
+                loading="eager"
+                class="h-12 w-12 object-contain"
+            />
+            <span class="text-white font-bold text-2xl ml-3">Skills</span>
+        </div>
+        <div class="grid-container">
+            {
+                skills.map((skill) => (
+                    <div class="grid-item hover:scale-105 hover:shadow-md hover:shadow-white">
+                        <img src={skill.image} alt="" />
+                        <div class="text-xl text-white">{skill.name}</div>
+                    </div>
+                ))
+            }
+        </div>
     </div>
 </div>
 <style>

@@ -2,57 +2,56 @@
     <ul class="text-white flex items-center relative">
         <span class="drawer-icon absolute left-4" id="drawer-icon">
             <img
-            class="h-10 w-10 object-contain"
-            src="/assets/icons/more_icon.png"
-            alt="More"
-            loading="eager"
-        />
+                class="h-8 w-8 object-contain"
+                src="/assets/icons/more_icon.png"
+                alt="More"
+                loading="eager"
+            />
         </span>
-        <span class="p-5 logo">
+        <a href="/" class="m-5 logo">
             <img
                 class="h-10 w-10 object-cover rounded-full"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiDdiT9y5285AMxNJwUGNnDqnTuAssyNNWeA&usqp=CAU"
                 alt="HM"
                 loading="eager"
             />
-        </span>
+        </a>
         <li class="p-3 text-lg"><a href="/">myPortfolio</a></li>
         <li class="p-3 text-lg"><a href="#about">About me</a></li>
         <li class="p-3 text-lg"><a href="#skills">Skills</a></li>
         <li class="p-3 text-lg"><a href="#project">Projects</a></li>
+        <li class="p-3 text-lg contact-btn cursor-pointer">Contact me</li>
     </ul>
 </div>
 <style>
-
-    .drawer-icon{
+    .drawer-icon {
         display: none;
     }
 
-    @media screen and (max-width: 550px) {
-  li {
-   display: none;
-  }
+    @media screen and (max-width: 600px) {
+        li {
+            display: none;
+        }
 
-  .logo{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+        .logo {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
 
-  .drawer-icon{
-        display: block;
+        .drawer-icon {
+            display: block;
+        }
     }
-}
 </style>
 <script>
-    const drawerBtn=document.getElementById('drawer-icon');
-    if(drawerBtn){
-        drawerBtn.addEventListener('click',()=>{
-            const drawer=document.getElementById('drawer');
-            if(drawer){
-                drawer.style.display='block';
+    const drawerBtn = document.getElementById("drawer-icon");
+    if (drawerBtn) {
+        drawerBtn.addEventListener("click", () => {
+            const drawer = document.getElementById("drawer");
+            if (drawer) {
+                drawer.style.display = "block";
             }
         });
     }
 </script>
-

@@ -23,6 +23,8 @@ const { title } = Astro.props;
 <style>
 	html {
 		scroll-behavior: smooth;
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 	}
 	body {
 		margin: 0px;
@@ -31,5 +33,10 @@ const { title } = Astro.props;
 		width: 100%;
 		font-family: system-ui, sans-serif;
 		background: #13151a;
+	}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	html::-webkit-scrollbar {
+		display: none;
 	}
 </style>
